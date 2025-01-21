@@ -2,7 +2,7 @@ from github import Github
 import datetime
 
 # Authenticate
-g = Github("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")
+g = Github("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")
 
 # Get the repository
 repo = g.get_repo("prafulk9155/daily-publish")
