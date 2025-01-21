@@ -2,16 +2,16 @@ name: Daily Update
 
 on:
   schedule:
-    - cron: '*/10 * * * *'  # Runs at 00:00 UTC every day
+    - cron: '*/10 * * * *'  # Runs every 10 minutes
   workflow_dispatch:  # Allows manual triggering
 
 jobs:
   update:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3  # Updated to the latest version of checkout
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4  # Updated to the latest version of setup-python
       with:
         python-version: '3.x'
     - name: Install dependencies
@@ -21,4 +21,4 @@ jobs:
     - name: Run update script
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: python your_script_name.py  
+      run: python ai_agent_git.py  # Ensure 'ai_agent_git.py' is the correct script name
