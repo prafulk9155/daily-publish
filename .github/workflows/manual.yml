@@ -1,28 +1,8 @@
-name: Daily Update
-
-on:
-  schedule:
-    - cron: '0 0 * * *'  # Runs daily at midnight UTC
-  workflow_dispatch:  # Allows manual triggering
-
-jobs:
-  update:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Set up Git
+ - name: Commit and push changes
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
         run: |
-          git config --global user.name "Praful Kumar"
-          git config --global user.email "aprafulk9155@gmail.com"
-
-      - name: Update text file
-        run: |
-          echo "Last updated on: $(date)" > daily_update.txt
-
-      - name: Commit and push changes
-        run: |
+          git remote set-url origin https://x-access-token:${GH_PAT}@github.com/prafulk9155/daily-publish.git
           git add daily_update.txt
           git commit -m "Automated daily update"
-          git push
+          git push origin main
