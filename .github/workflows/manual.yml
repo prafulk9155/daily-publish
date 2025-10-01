@@ -1,8 +1,1 @@
- - name: Commit and push changes
-        env:
-          GH_PAT: ${{ secrets.GH_PAT }}
-        run: |
-          git remote set-url origin https://x-access-token:${GH_PAT}@github.com/prafulk9155/daily-publish.git
-          git add daily_update.txt
-          git commit -m "Automated daily update"
-          git push origin main
+
