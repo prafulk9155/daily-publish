@@ -2,7 +2,7 @@ name: Auto Commit Test
 
 on:
   schedule:
-    - cron: "*/5 * * * *"   # Every 5 minutes
+    - cron: "0 18 * * *"   # Every day at 18:00 UTC
   workflow_dispatch:
 
 jobs:
