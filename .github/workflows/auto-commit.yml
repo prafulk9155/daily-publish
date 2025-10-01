@@ -1,0 +1,28 @@
+name: Daily Auto Commit
+
+on:
+  schedule:
+    - cron: "0 18 * * *"   # Runs every day at 18:00 UTC (11:30 PM IST)
+  workflow_dispatch:        # allows manual trigger
+
+jobs:
+  auto-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Make dummy change
+        run: |
+          echo "Last updated on $(date)" > keep_alive.txt
+
+      - name: Commit changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "chore: daily auto commit $(date)" || echo "No changes to commit"
+
+      - name: Push changes
+        run: |
+          git push
